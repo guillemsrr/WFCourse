@@ -56,6 +56,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2204074761577936675, guid: 65740cb59fda7ab45ac7bbf02390ee8b, type: 3}
+      propertyPath: _frequency
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204074761577936675, guid: 65740cb59fda7ab45ac7bbf02390ee8b, type: 3}
       propertyPath: _neighbourTypes.Array.size
       value: 1
       objectReference: {fileID: 0}

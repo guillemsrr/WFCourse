@@ -10,12 +10,20 @@ namespace WFCourse.Generation
         private ModuleController[] _moduleModels;
         private ModuleController _errorModule;
         private List<ModuleController> _possibleModules;
+        private int _totalWeight;
+        private float _sumOfLogWeight;
+        private float _entropyNoise;
+
+        public delegate void CellPropagated(CellController cell);
+        public event CellPropagated CellPropagatedEvent;
         
         public Vector3Int Position { get; }
         public ModuleType Type { get; private set; }
         public bool IsErroneus { get; private set; }
         public bool IsCollapsed { get; private set; }
         public bool OnlyOnePossibility => _possibleModules.Count == 1;
+        public List<ModuleController> Possibilities => _possibleModules;
+        
 
         public CellController(Transform parent, ModuleController[] moduleModels,  ModuleController errorModule,
             Vector3Int position)
@@ -30,7 +38,7 @@ namespace WFCourse.Generation
 
         public void Collapse()
         {
-            ModuleController randomModule = GetRandomModule();
+            ModuleController randomModule = GetWeightedRandomModule();
             ModuleController collapsedModule = InstantiateModule(randomModule);
             Type = collapsedModule.Type;
 
@@ -44,10 +52,19 @@ namespace WFCourse.Generation
             return collapsedModule;
         }
 
-        private ModuleController GetRandomModule()
+        private ModuleController GetWeightedRandomModule()
         {
-            int randomNumber = Random.Range(0, _possibleModules.Count);
-            return _possibleModules[randomNumber];
+            int randomWeight = Random.Range(0, _totalWeight + 1);
+            foreach (ModuleController possibleModule in _possibleModules)
+            {
+                randomWeight -= possibleModule.Frequency;
+                if (randomWeight <= 0)
+                {
+                    return possibleModule;
+                }
+            }
+
+            return _possibleModules[0];
         }
 
         public void Propagate(ModuleType collapsedType)
@@ -63,7 +80,7 @@ namespace WFCourse.Generation
             
             foreach (ModuleController impossibleModule in impossibleModules)
             {
-                _possibleModules.Remove(impossibleModule);
+                RemoveImpossibleModule(impossibleModule);
             }
 
             if (_possibleModules.Count == 0)
@@ -71,6 +88,25 @@ namespace WFCourse.Generation
                 IsErroneus = true;
                 InstantiateModule(_errorModule);
             }
+        }
+
+        private void RemoveImpossibleModule(ModuleController impossibleModule)
+        {
+            _possibleModules.Remove(impossibleModule);
+            _totalWeight -= impossibleModule.Frequency;
+            _sumOfLogWeight -= Mathf.Log(impossibleModule.Frequency);
+        }
+
+        public float GetEntropy()
+        {
+            return Mathf.Log(_totalWeight) - _sumOfLogWeight / _totalWeight + _entropyNoise;
+        }
+
+        public void SetWeightData(int totalWeight, float logWeight, float noise)
+        {
+            _totalWeight = totalWeight;
+            _sumOfLogWeight = logWeight;
+            _entropyNoise = noise;
         }
     }
 }

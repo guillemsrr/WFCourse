@@ -17,6 +17,7 @@ namespace WFCourse.Generation
 
         private Dictionary<Vector3Int, CellController> _cells;
         private WaveFunctionCollapse _waveFunctionCollapse;
+        private FrequencyController _frequencyController;
 
         private void Awake()
         {
@@ -37,7 +38,7 @@ namespace WFCourse.Generation
         private void GenerateLevel()
         {
             CreateCells();
-
+            _frequencyController = new FrequencyController(_cells.Values);
             _waveFunctionCollapse = new WaveFunctionCollapse(_cells);
             _waveFunctionCollapse.Observe();
         }

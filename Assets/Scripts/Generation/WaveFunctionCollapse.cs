@@ -7,6 +7,8 @@ namespace WFCourse.Generation
     {
         private readonly Dictionary<Vector3Int, CellController> _waveCells;
         private List<CellController> _uncollapsedCells;
+        private EntropyHeap _entropyHeap;
+
 
         private int NumberCells => _uncollapsedCells.Count;
 
@@ -14,22 +16,22 @@ namespace WFCourse.Generation
         {
             _waveCells = waveCells;
             _uncollapsedCells = new List<CellController>(waveCells.Values);
+            _entropyHeap = new EntropyHeap(waveCells.Values);
         }
 
         public void Observe()
         {
             while (NumberCells != 0)
             {
-                CellController randomCell = GetRandomCell();
+                CellController randomCell = _entropyHeap.GetCell();
+                if (randomCell == null)
+                {
+                    _entropyHeap.AddLowestEntropyCell(_uncollapsedCells);
+                    randomCell = _entropyHeap.GetCell();
+                }
                 Collapse(randomCell);
                 Propagate(randomCell);
             }
-        }
-
-        private CellController GetRandomCell()
-        {
-            int randomNumber = Random.Range(0, NumberCells);
-            return _uncollapsedCells[randomNumber];
         }
 
         private void Collapse(CellController randomCell)
