@@ -61,7 +61,7 @@ namespace WFCourse.Generation
                     continue;
                 }
                 
-                propagatedCell.Propagate(cell.Type);
+                propagatedCell.Propagate(cell.TypeSo);
 
                 if (propagatedCell.OnlyOnePossibility)
                 {

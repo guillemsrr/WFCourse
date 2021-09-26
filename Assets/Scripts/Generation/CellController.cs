@@ -18,7 +18,7 @@ namespace WFCourse.Generation
         public event CellPropagated CellPropagatedEvent;
         
         public Vector3Int Position { get; }
-        public ModuleType Type { get; private set; }
+        public FaceTypeSO TypeSo { get; private set; }
         public bool IsErroneus { get; private set; }
         public bool IsCollapsed { get; private set; }
         public bool OnlyOnePossibility => _possibleModules.Count == 1;
@@ -40,7 +40,6 @@ namespace WFCourse.Generation
         {
             ModuleController randomModule = GetWeightedRandomModule();
             ModuleController collapsedModule = InstantiateModule(randomModule);
-            Type = collapsedModule.Type;
 
             IsCollapsed = true;
         }
@@ -67,15 +66,15 @@ namespace WFCourse.Generation
             return _possibleModules[0];
         }
 
-        public void Propagate(ModuleType collapsedType)
+        public void Propagate(FaceTypeSO collapsedTypeSo)
         {
             Queue<ModuleController> impossibleModules = new Queue<ModuleController>();
             foreach (ModuleController possibleModule in _possibleModules)
             {
-                if (!possibleModule.CanConnect(collapsedType))
+                /*if (!possibleModule.CanConnect(collapsedTypeSo))
                 {
                     impossibleModules.Enqueue(possibleModule);
-                }
+                }*/
             }
             
             foreach (ModuleController impossibleModule in impossibleModules)
