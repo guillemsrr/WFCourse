@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using WFCourse.Modules;
 using WFCourse.ScriptableObjects;
+using Random = UnityEngine.Random;
 
 namespace WFCourse.Generation
 {
     
     public class LevelGenerator : MonoBehaviour
     {
-        [SerializeField] private ModuleController[] _moduleModels;
+        [SerializeField] private ModulesDataSO _modulesDataSo;
         [SerializeField] private ModuleController _errorModule;
         [SerializeField] private Vector3Int _gridDimensions = new Vector3Int(5, 5, 1);
         [SerializeField] private LevelChannelSO _levelChannel;
@@ -21,6 +22,7 @@ namespace WFCourse.Generation
 
         private void Awake()
         {
+            Random.InitState(0);
             _levelChannel.GenerationEvent += Generate;
         }
 
@@ -51,14 +53,17 @@ namespace WFCourse.Generation
             {
                 for (int y = 0; y < _gridDimensions.y; y++)
                 {
-                    CreateCell(new Vector3Int(x,y,0));
+                    for (int z = 0; z < _gridDimensions.z; z++)
+                    {
+                        CreateCell(new Vector3Int(x,y,z));
+                    }
                 }
             }
         }
 
         private void CreateCell(Vector3Int position)
         {
-            CellController cellController = new CellController(transform, _moduleModels,  _errorModule, position);
+            CellController cellController = new CellController(transform, _modulesDataSo.ModuleDatas,  _errorModule, position);
             _cells[position] = cellController;
         }
 

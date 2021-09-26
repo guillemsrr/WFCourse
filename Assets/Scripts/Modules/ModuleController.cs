@@ -1,14 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Utilities;
 
 namespace WFCourse.Modules
 {
     public class ModuleController : MonoBehaviour
     {
-        [SerializeField] private Face[] _faces;
-        [SerializeField] private int _frequency = 1;
+        [SerializeField] private Face _frontFace;
+        [SerializeField] private Face _backFace;
+        [SerializeField] private Face _leftFace;
+        [SerializeField] private Face _rightFace;
+        [SerializeField] private Face _upperFace;
+        [SerializeField] private Face _downFace;
 
-
-        public int Frequency => _frequency;
+        public Dictionary<Direction, Face> FacesByDirection { get; private set; }
         
+        public void InitializeDirectionsDictionary()
+        {
+            FacesByDirection = new Dictionary<Direction, Face>
+            {
+                [Direction.Front] = _frontFace,
+                [Direction.Back] = _backFace,
+                [Direction.Left] = _leftFace,
+                [Direction.Right] = _rightFace,
+                [Direction.Up] = _upperFace,
+                [Direction.Down] = _downFace
+            };
+        }
     }
 }

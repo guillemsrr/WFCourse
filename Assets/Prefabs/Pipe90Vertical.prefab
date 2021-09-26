@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87d7088e833f4a42995e7127ac90f2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.008518532
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87d7088e833f4a42995e7127ac90f2f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87d7088e833f4a42995e7127ac90f2f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.06470473
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87d7088e833f4a42995e7127ac90f2f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,7 +66,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 200843913255075005, guid: 666002ffddad1784fa5284540df4fd86, type: 3}
       propertyPath: m_Name
-      value: Pipe90
+      value: Pipe90Vertical
       objectReference: {fileID: 0}
     - target: {fileID: 200843913255075007, guid: 666002ffddad1784fa5284540df4fd86, type: 3}
       propertyPath: m_RootOrder

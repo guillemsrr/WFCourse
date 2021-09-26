@@ -1,0 +1,18 @@
+﻿using UnityEditor;
+using UnityEngine;
+
+namespace WFCourse.Utilities
+{
+    public class ScriptableObjectGenerator
+    {
+        private const string BASE_PATH = "Assets/ScriptableObjects/";
+        private const string ASSET_EXTENSION = ".asset";
+        
+        public static void SaveAsset(string path, ScriptableObject scriptableObject)
+        {
+            path = BASE_PATH + path + ASSET_EXTENSION;
+            AssetDatabase.CreateAsset(scriptableObject, path);
+            AssetDatabase.SaveAssets();
+        }
+    }
+}

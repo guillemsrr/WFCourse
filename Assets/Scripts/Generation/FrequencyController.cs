@@ -19,7 +19,7 @@ namespace WFCourse.Generation
             int totalWeight = 0;
             float logWeight = 0;
             
-            foreach (ModuleController possibleModule in cellController.Possibilities)
+            foreach (ModuleData possibleModule in cellController.Possibilities)
             {
                 totalWeight += possibleModule.Frequency;
                 logWeight += Mathf.Log(possibleModule.Frequency);

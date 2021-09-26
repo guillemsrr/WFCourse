@@ -11,7 +11,9 @@ namespace WFCourse.Modules
 
         private readonly Vector3 _faceSize = new Vector3(2, 2, 0.001f);
 
-        private void OnDrawGizmos()
+        public int TypeNumber => _type.Number;
+
+        private void OnDrawGizmosSelected()
         {
             Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.color = _color;

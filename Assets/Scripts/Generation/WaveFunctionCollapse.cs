@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Utilities;
 
 namespace WFCourse.Generation
 {
@@ -47,9 +48,9 @@ namespace WFCourse.Generation
 
         private void Propagate(CellController cell)
         {
-            foreach (Vector3Int directionVector in Utilities.Directions.DirectionVectors)
+            foreach (KeyValuePair<Direction, Vector3Int> directionVector in Utilities.Directions.DirectionsByVectors)
             {
-                Vector3Int offset = cell.Position + directionVector;
+                Vector3Int offset = cell.Position + directionVector.Value;
                 if (!_waveCells.ContainsKey(offset))
                 {
                     continue;
@@ -61,7 +62,7 @@ namespace WFCourse.Generation
                     continue;
                 }
                 
-                propagatedCell.Propagate(cell.TypeSo);
+                propagatedCell.Propagate(directionVector.Key, cell.CollapsedModuleNumber);
 
                 if (propagatedCell.OnlyOnePossibility)
                 {

@@ -75,18 +75,18 @@ LightmapSettings:
     m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRSampleCount: 512
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
-    m_PVRDenoiserTypeDirect: 0
-    m_PVRDenoiserTypeIndirect: 0
-    m_PVRDenoiserTypeAO: 0
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
+    m_PVREnvironmentMIS: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &980042758
+--- !u!1 &652052544
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,42 +131,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 980042760}
-  - component: {fileID: 980042759}
+  - component: {fileID: 652052545}
+  - component: {fileID: 652052546}
   m_Layer: 0
-  m_Name: LevelGenerator
+  m_Name: ModuleDataBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &980042759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980042758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0515a601622a385459a4f2930fb87244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modulesDataSo: {fileID: 11400000, guid: bf3adc36bb777e14ba714a448528e923, type: 2}
-  _errorModule: {fileID: 1637853324637742978, guid: 9e401ab1e1f923741a16d2d876098fe0, type: 3}
-  _gridDimensions: {x: 5, y: 5, z: 5}
-  _levelChannel: {fileID: 11400000, guid: 6f60fe59c7fa07248b2781439c54fbb6, type: 2}
---- !u!4 &980042760
+--- !u!4 &652052545
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980042758}
+  m_GameObject: {fileID: 652052544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.6290879, y: 0.20475931, z: 0.8929646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &652052546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652052544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e71de681cf17540bd52bfa35ff0ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moduleControllers:
+  - {fileID: 6714214688339091272, guid: 6211cc4412c0bce489f017dcea94da31, type: 3}
+  - {fileID: 1553035744373634876, guid: 761252a8e3f77ff4e91187d691b175b7, type: 3}
+  - {fileID: 6339474473292837815, guid: ea0558bec2fc740439269a77df2291da, type: 3}
+  - {fileID: 5384886430121698755, guid: ea173cd6e9e41834ea34e546370a15e1, type: 3}

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49385168acb4b969e3e307617e83ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 2
+  _direction: 0
   _type: {fileID: 11400000, guid: ae94a51c2d70c1647b511faf69a32581, type: 2}
   _color: {r: 1, g: 0, b: 0.054286957, a: 0.5019608}
 --- !u!1 &200843913081996899
@@ -127,14 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf02eb08137a0e543a696529e3fc566a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _faces:
-  - {fileID: 200843913332458571}
-  - {fileID: 200843914981160917}
-  - {fileID: 200843912976516630}
-  - {fileID: 200843914696669052}
-  - {fileID: 200843914855140421}
-  - {fileID: 200843914044527627}
-  _frequency: 1
+  _frontFace: {fileID: 200843913332458571}
+  _backFace: {fileID: 200843914981160917}
+  _leftFace: {fileID: 200843912976516630}
+  _rightFace: {fileID: 200843914696669052}
+  _upperFace: {fileID: 200843914044527627}
+  _downFace: {fileID: 200843914855140421}
+  test:
+    Number: 0
+    Frequency: 0
+    Rotation: 0
+    ModuleController: {fileID: 0}
+    PersistentPossibleNeighbors:
+      FrontPossibleNeighbors: 
+      BackPossibleNeighbors: 
+      LeftPossibleNeighbors: 
+      RightPossibleNeighbors: 
+      UpPossibleNeighbors: 
+      DownPossibleNeighbors: 
 --- !u!1 &200843913324162447
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49385168acb4b969e3e307617e83ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 0
+  _direction: 5
   _type: {fileID: 11400000, guid: ae94a51c2d70c1647b511faf69a32581, type: 2}
   _color: {r: 0, g: 0.22854447, b: 1, a: 0.5019608}
 --- !u!1 &200843914044527625
@@ -346,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49385168acb4b969e3e307617e83ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 5
+  _direction: 1
   _type: {fileID: 11400000, guid: ae94a51c2d70c1647b511faf69a32581, type: 2}
   _color: {r: 0, g: 1, b: 0.52922106, a: 0.5019608}
 --- !u!1 &200843914981160915
@@ -392,6 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49385168acb4b969e3e307617e83ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 1
+  _direction: 2
   _type: {fileID: 11400000, guid: ae94a51c2d70c1647b511faf69a32581, type: 2}
   _color: {r: 0, g: 0.65711856, b: 1, a: 0.5019608}
