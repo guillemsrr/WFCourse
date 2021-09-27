@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Generation.Constraints;
 using WFCourse.Modules;
 using WFCourse.ScriptableObjects;
 using Random = UnityEngine.Random;
@@ -19,10 +20,10 @@ namespace WFCourse.Generation
         private Dictionary<Vector3Int, CellController> _cells;
         private WaveFunctionCollapse _waveFunctionCollapse;
         private FrequencyController _frequencyController;
+        private List<ConstraintApplier> _constraints;
 
         private void Awake()
         {
-            Random.InitState(0);
             _levelChannel.GenerationEvent += Generate;
         }
 
@@ -40,11 +41,31 @@ namespace WFCourse.Generation
         private void GenerateLevel()
         {
             CreateCells();
+            InitializeConstraints();
+            ApplyConstraints();
             _frequencyController = new FrequencyController(_cells.Values);
             _waveFunctionCollapse = new WaveFunctionCollapse(_cells);
+            
+            
             _waveFunctionCollapse.Observe();
         }
-        
+
+        private void ApplyConstraints()
+        {
+            foreach (ConstraintApplier constraintApplier in _constraints)
+            {
+                constraintApplier.ApplyConstraint(_cells);
+            }
+        }
+
+        private void InitializeConstraints()
+        {
+            _constraints = new List<ConstraintApplier>()
+            {
+                new PerimeterConstraint(_modulesDataSo.PerimeterConstraintNumber, _gridDimensions)
+            };
+        }
+
         private void CreateCells()
         {
             _cells = new Dictionary<Vector3Int, CellController>();

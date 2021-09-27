@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using WFCourse.Modules;
@@ -17,12 +18,15 @@ namespace WFCourse
         [SerializeField] private ModulesDataSO[] _modulesDataSo;
         [SerializeField] private ModuleController[] _moduleControllers;
         [SerializeField] private string _modulesDataName;
+        [SerializeField] private List<ModuleController> _perimeterModuleConstraints;
 
         private readonly ModuleRotationChecker _moduleRotationChecker = new ModuleRotationChecker();
         private readonly ModuleConnectionChecker _moduleConnectionChecker = new ModuleConnectionChecker();
+        private List<int> _perimeterModuleNumbers;
 
         public void CreateModulesData()
         {
+            _perimeterModuleNumbers = new List<int>();
             List<ModuleData> moduleDatas = ExtractDataFromModules();
             SetPossibleNeighbors(moduleDatas);
             SaveModuleDatas(moduleDatas);
@@ -43,6 +47,11 @@ namespace WFCourse
                 {
                     ModuleData moduleData = new ModuleData(moduleController, rotation, numberModuleData);
                     moduleDatas.Add(moduleData);
+
+                    if (_perimeterModuleConstraints.Contains(moduleController))
+                    {
+                        _perimeterModuleNumbers.Add(numberModuleData);
+                    }
                     numberModuleData++;
                 }
             }
@@ -76,6 +85,7 @@ namespace WFCourse
             
             ModulesDataSO modulesDataSo = ScriptableObject.CreateInstance<ModulesDataSO>();
             modulesDataSo.SetData(moduleDatas.ToArray());
+            modulesDataSo.SetPerimeterConstraints(_perimeterModuleNumbers);
             ScriptableObjectGenerator.SaveAsset(MODULE_DATA_PATH + _modulesDataName , modulesDataSo);
         }
 
@@ -86,6 +96,7 @@ namespace WFCourse
                 if (dataSo.name == _modulesDataName)
                 {
                     dataSo.SetData(moduleDatas.ToArray());
+                    dataSo.SetPerimeterConstraints(_perimeterModuleNumbers);
                     return true;
                 }
             }

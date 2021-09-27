@@ -169,6 +169,7 @@ MonoBehaviour:
   _modulesDataSo:
   - {fileID: 11400000, guid: bf3adc36bb777e14ba714a448528e923, type: 2}
   _moduleControllers:
+  - {fileID: 5988751725843012992, guid: 5f0f576942c10de4aa2ae84e31315edb, type: 3}
   - {fileID: 6714214688339091272, guid: 6211cc4412c0bce489f017dcea94da31, type: 3}
   - {fileID: 1553035744373634876, guid: 761252a8e3f77ff4e91187d691b175b7, type: 3}
   - {fileID: 1645876224665413839, guid: 24b87c7e386e7a8419ba5bbf40d8d538, type: 3}
@@ -179,5 +180,6 @@ MonoBehaviour:
   - {fileID: 1154871782821543051, guid: 0bc499dacf31fb74da3c6492449b9ed7, type: 3}
   - {fileID: 5625239398439932904, guid: 3a207ce704d2f4447bd06a1056756aea, type: 3}
   - {fileID: 8250182129841837056, guid: 024203870da8eac4ab2239ec54a8584c, type: 3}
-  - {fileID: 215789278990807687, guid: b84772387121ecb40866c530e081e93a, type: 3}
+  - {fileID: 5831436112628402972, guid: 4af849acd0b19fa458ad39100b68e58a, type: 3}
+  - {fileID: 5641659089502983976, guid: 98456b808012e6449a71bec875034a5d, type: 3}
   _modulesDataName: pipesModuleData
