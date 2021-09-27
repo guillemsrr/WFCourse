@@ -87,6 +87,8 @@ namespace WFCourse.Generation
                 IsErroneus = true;
                 InstantiateModule(_errorModule, Rotation.Rot0);
             }
+            
+            CellPropagatedEvent?.Invoke(this);
         }
 
         private void RemoveImpossibleModule(ModuleData impossibleModule)

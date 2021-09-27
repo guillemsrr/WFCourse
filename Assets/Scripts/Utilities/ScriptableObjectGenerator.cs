@@ -5,6 +5,8 @@ namespace WFCourse.Utilities
 {
     public class ScriptableObjectGenerator
     {
+        #if UNITY_EDITOR
+        
         private const string BASE_PATH = "Assets/ScriptableObjects/";
         private const string ASSET_EXTENSION = ".asset";
         
@@ -14,5 +16,7 @@ namespace WFCourse.Utilities
             AssetDatabase.CreateAsset(scriptableObject, path);
             AssetDatabase.SaveAssets();
         }
+        
+        #endif
     }
 }

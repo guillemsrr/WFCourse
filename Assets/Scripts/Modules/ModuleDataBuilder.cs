@@ -10,9 +10,13 @@ namespace WFCourse
 {
     public class ModuleDataBuilder : MonoBehaviour
     {
-        private const string MODULE_DATA_PATH = "ModuleData/pipesModuleData";
-        
+#if UNITY_EDITOR
+
+        private const string MODULE_DATA_PATH = "ModuleData/";
+
+        [SerializeField] private ModulesDataSO[] _modulesDataSo;
         [SerializeField] private ModuleController[] _moduleControllers;
+        [SerializeField] private string _modulesDataName;
 
         private readonly ModuleRotationChecker _moduleRotationChecker = new ModuleRotationChecker();
         private readonly ModuleConnectionChecker _moduleConnectionChecker = new ModuleConnectionChecker();
@@ -25,6 +29,7 @@ namespace WFCourse
             
             EditorUtility.SetDirty(this);
             AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
         }
 
         private List<ModuleData> ExtractDataFromModules()
@@ -64,9 +69,29 @@ namespace WFCourse
 
         private void SaveModuleDatas(List<ModuleData> moduleDatas)
         {
+            if (CheckAlreadyCreatedModulesData(moduleDatas))
+            {
+                return;
+            }
+            
             ModulesDataSO modulesDataSo = ScriptableObject.CreateInstance<ModulesDataSO>();
             modulesDataSo.SetData(moduleDatas.ToArray());
-            ScriptableObjectGenerator.SaveAsset(MODULE_DATA_PATH , modulesDataSo);
+            ScriptableObjectGenerator.SaveAsset(MODULE_DATA_PATH + _modulesDataName , modulesDataSo);
         }
+
+        private bool CheckAlreadyCreatedModulesData(List<ModuleData> moduleDatas)
+        {
+            foreach (ModulesDataSO dataSo in _modulesDataSo)
+            {
+                if (dataSo.name == _modulesDataName)
+                {
+                    dataSo.SetData(moduleDatas.ToArray());
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    #endif
     }
 }

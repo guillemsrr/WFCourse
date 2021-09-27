@@ -30,13 +30,13 @@ namespace WFCourse.Modules
         {
             foreach (Rotation differentRotation in rotations)
             {
-                if (AreAnyOfModuleFacesDifferent(differentRotation, newRotation))
+                if (!AreAnyOfModuleFacesDifferent(differentRotation, newRotation))
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
 
         private bool AreAnyOfModuleFacesDifferent(Rotation differentRotation, Rotation newRotation)

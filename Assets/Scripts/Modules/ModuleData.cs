@@ -5,6 +5,7 @@ namespace WFCourse.Modules
     [System.Serializable]
     public class ModuleData
     {
+        public string Key;
         public int Number;
         public int Frequency = 1;
         public Rotation Rotation;
@@ -13,6 +14,7 @@ namespace WFCourse.Modules
 
         public ModuleData(ModuleController moduleController, Rotation rotation, int numberModuleData)
         {
+            Key = moduleController.name + "_" + rotation;
             Number = numberModuleData;
             Rotation = rotation;
             ModuleController = moduleController;

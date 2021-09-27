@@ -22,7 +22,7 @@ namespace WFCourse.Generation
 
         public void Observe()
         {
-            while (NumberCells != 0)
+            while (NumberCells != 0)    
             {
                 CellController randomCell = _entropyHeap.GetCell();
                 if (randomCell == null)

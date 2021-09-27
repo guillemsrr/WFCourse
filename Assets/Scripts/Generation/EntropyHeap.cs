@@ -20,7 +20,10 @@ namespace WFCourse.Generation
         {
             if (_sortedCells.ContainsValue(cell)) return;
             
-            _sortedCells.Add(cell.GetEntropy(), cell);
+            float entropy = cell.GetEntropy();
+            if (_sortedCells.ContainsKey(entropy)) return;
+            
+            _sortedCells.Add(entropy, cell);
         }
 
         public void AddLowestEntropyCell(ICollection<CellController> cells)
@@ -44,15 +47,15 @@ namespace WFCourse.Generation
         public CellController GetCell()
         {
             CellController cell = null;
-            while (_sortedCells.Count != 0)
+            
+            do
             {
-                do
-                {
-                    cell = _sortedCells.Values[0];
-                    _sortedCells.RemoveAt(0);
-                }
-                while (cell.IsCollapsed || cell.IsErroneus);
+                if (_sortedCells.Count == 0) break;
+                
+                cell = _sortedCells.Values[0];
+                _sortedCells.RemoveAt(0);
             }
+            while (cell.IsCollapsed || cell.IsErroneus);
 
             return cell;
         }
