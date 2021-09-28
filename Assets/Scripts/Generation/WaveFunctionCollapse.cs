@@ -1,23 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Generation.Backtracking;
+using WFCourse.Generation.Cells;
+using WFCourse.Generation.Waves;
 using WFCourse.Utilities;
 
 namespace WFCourse.Generation
 {
     public class WaveFunctionCollapse
     {
-        private readonly Dictionary<Vector3Int, CellController> _waveCells;
+        private readonly Wave _wave;
         private List<CellController> _uncollapsedCells;
         private EntropyHeap _entropyHeap;
+        private BacktrackingHandler _backtrackingHandler;
 
 
         private int NumberCells => _uncollapsedCells.Count;
 
-        public WaveFunctionCollapse(Dictionary<Vector3Int, CellController> waveCells)
+        public WaveFunctionCollapse(Wave wave)
         {
-            _waveCells = waveCells;
-            _uncollapsedCells = new List<CellController>(waveCells.Values);
-            _entropyHeap = new EntropyHeap(waveCells.Values);
+            _wave = wave;
+            _uncollapsedCells = new List<CellController>(wave.Cells.Values);
+            _entropyHeap = new EntropyHeap(wave.Cells.Values);
+            _backtrackingHandler = new BacktrackingHandler(this);
         }
 
         public void Observe()
@@ -51,18 +56,23 @@ namespace WFCourse.Generation
             foreach (KeyValuePair<Direction, Vector3Int> directionVector in Utilities.Directions.DirectionsByVectors)
             {
                 Vector3Int offset = cell.Position + directionVector.Value;
-                if (!_waveCells.ContainsKey(offset))
+                if (!_wave.Cells.ContainsKey(offset))
                 {
                     continue;
                 }
 
-                CellController propagatedCell = _waveCells[offset];
+                CellController propagatedCell = _wave.Cells[offset];
                 if (propagatedCell.IsErroneus || propagatedCell.IsCollapsed)
                 {
                     continue;
                 }
+
+                if (!cell.IsCollapsed)
+                {
+                    return;
+                }
                 
-                propagatedCell.Propagate(directionVector.Key, cell.CollapsedModuleNumber);
+                propagatedCell.Propagate(directionVector.Key, cell.CellData.CollapsedModuleData.Number);
 
                 if (propagatedCell.OnlyOnePossibility)
                 {
@@ -72,9 +82,19 @@ namespace WFCourse.Generation
 
                 if (propagatedCell.IsErroneus)
                 {
-                    RemoveCollapsedCell(propagatedCell);
+                    _backtrackingHandler.DiscardCurrentState();
+                    return;
                 }
             }
+
+            _backtrackingHandler.AddState(_wave, _uncollapsedCells, _entropyHeap);
+        }
+
+        public void SetState(TrackingState trackingState)
+        {
+            _wave.SetCellsData(trackingState.WaveData);
+            _uncollapsedCells = new List<CellController>(trackingState.UncollapsedCells);
+            _entropyHeap = new EntropyHeap(trackingState.EntropyHeap);
         }
     }
 }

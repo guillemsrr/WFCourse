@@ -183,3 +183,4 @@ MonoBehaviour:
   - {fileID: 5831436112628402972, guid: 4af849acd0b19fa458ad39100b68e58a, type: 3}
   - {fileID: 5641659089502983976, guid: 98456b808012e6449a71bec875034a5d, type: 3}
   _modulesDataName: pipesModuleData
+  _perimeterModuleConstraints: []

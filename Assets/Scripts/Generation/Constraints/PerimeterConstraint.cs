@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Generation.Cells;
 using WFCourse.Utilities;
 
 namespace WFCourse.Generation.Constraints

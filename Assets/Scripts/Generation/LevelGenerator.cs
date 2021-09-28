@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WFCourse.Generation.Cells;
 using WFCourse.Generation.Constraints;
+using WFCourse.Generation.Waves;
 using WFCourse.Modules;
 using WFCourse.ScriptableObjects;
 using Random = UnityEngine.Random;
@@ -13,11 +15,10 @@ namespace WFCourse.Generation
     public class LevelGenerator : MonoBehaviour
     {
         [SerializeField] private ModulesDataSO _modulesDataSo;
-        [SerializeField] private ModuleController _errorModule;
         [SerializeField] private Vector3Int _gridDimensions = new Vector3Int(5, 5, 1);
         [SerializeField] private LevelChannelSO _levelChannel;
 
-        private Dictionary<Vector3Int, CellController> _cells;
+        private Wave _wave;
         private WaveFunctionCollapse _waveFunctionCollapse;
         private FrequencyController _frequencyController;
         private List<ConstraintApplier> _constraints;
@@ -41,34 +42,44 @@ namespace WFCourse.Generation
         private void GenerateLevel()
         {
             CreateCells();
-            InitializeConstraints();
+            InitializeSubClasses();
             ApplyConstraints();
-            _frequencyController = new FrequencyController(_cells.Values);
-            _waveFunctionCollapse = new WaveFunctionCollapse(_cells);
-            
-            
             _waveFunctionCollapse.Observe();
+            DrawCells();
+        }
+
+        private void DrawCells()
+        {
+            foreach (CellController cell in _wave.Cells.Values)
+            {
+                if(!cell.IsCollapsed) continue;
+                
+                cell.InstantiateModule();
+            }
         }
 
         private void ApplyConstraints()
         {
             foreach (ConstraintApplier constraintApplier in _constraints)
             {
-                constraintApplier.ApplyConstraint(_cells);
+                constraintApplier.ApplyConstraint(_wave.Cells);
             }
         }
 
-        private void InitializeConstraints()
+        private void InitializeSubClasses()
         {
             _constraints = new List<ConstraintApplier>()
             {
                 new PerimeterConstraint(_modulesDataSo.PerimeterConstraintNumber, _gridDimensions)
             };
+            
+            _frequencyController = new FrequencyController(_wave.Cells.Values);
+            _waveFunctionCollapse = new WaveFunctionCollapse(_wave);
         }
 
         private void CreateCells()
         {
-            _cells = new Dictionary<Vector3Int, CellController>();
+            _wave = new Wave();
             
             for (int x = 0; x < _gridDimensions.x; x++)
             {
@@ -84,8 +95,8 @@ namespace WFCourse.Generation
 
         private void CreateCell(Vector3Int position)
         {
-            CellController cellController = new CellController(transform, _modulesDataSo.ModuleDatas,  _errorModule, position);
-            _cells[position] = cellController;
+            CellController cellController = new CellController(transform, _modulesDataSo.ModuleDatas, position);
+            _wave.Cells[position] = cellController;
         }
 
         private void Reset()
@@ -95,7 +106,7 @@ namespace WFCourse.Generation
                 DestroyImmediate(transform.GetChild(0).gameObject);
             }
             
-            _cells.Clear();
+            _wave.Cells.Clear();
         }
     }
 }

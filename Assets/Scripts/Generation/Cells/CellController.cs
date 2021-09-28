@@ -3,15 +3,12 @@ using UnityEngine;
 using WFCourse.Modules;
 using WFCourse.Utilities;
 
-namespace WFCourse.Generation
+namespace WFCourse.Generation.Cells
 {
     public class CellController
     {
         private Transform _parent;
-        private ModuleController _errorModule;
-        private List<ModuleData> _possibleModules;
-        private int _totalWeight;
-        private float _sumOfLogWeight;
+
         private float _entropyNoise;
 
         public delegate void CellPropagated(CellController cell);
@@ -19,42 +16,35 @@ namespace WFCourse.Generation
         
         public Vector3Int Position { get; }
         public bool IsErroneus { get; private set; }
-        public bool IsCollapsed { get; private set; }
-        public bool OnlyOnePossibility => _possibleModules.Count == 1;
-        public List<ModuleData> Possibilities => _possibleModules;
-        public int CollapsedModuleNumber { get; private set; }
-        
+        public bool IsCollapsed => CellData.CollapsedModuleData != null;
+        public bool OnlyOnePossibility => CellData.PossibleModules.Count == 1;
+        public List<ModuleData> Possibilities => CellData.PossibleModules;
 
-        public CellController(Transform parent, ModuleData[] moduleDatas,  ModuleController errorModule,
-            Vector3Int position)
+        public CellData CellData { get; set; }
+
+        public CellController(Transform parent, ModuleData[] moduleDatas, Vector3Int position)
         {
             _parent = parent;
-            _errorModule = errorModule;
             Position = position;
 
-            _possibleModules = new List<ModuleData>(moduleDatas);
+            CellData = new CellData(moduleDatas);
         }
 
         public void Collapse()
         {
-            ModuleData moduleData = GetWeightedRandomModule();
-            CollapsedModuleNumber = moduleData.Number;
-            ModuleController randomModule = moduleData.ModuleController;
-            InstantiateModule(randomModule, moduleData.Rotation);
-
-            IsCollapsed = true;
+            CellData.CollapsedModuleData = GetWeightedRandomModule();
         }
 
-        private void InstantiateModule(ModuleController randomModule, Rotation rotation)
+        public void InstantiateModule()
         {
-            ModuleController collapsedModule = Object.Instantiate(randomModule, Position*Vector3Int.one*2, Rotations.QuaternionByRotation[rotation], _parent);
+            ModuleController collapsedModule = Object.Instantiate(CellData.CollapsedModuleData.ModuleController, Position*Vector3Int.one*2, Rotations.QuaternionByRotation[CellData.CollapsedModuleData.Rotation], _parent);
             collapsedModule.transform.name += Position;
         }
 
         private ModuleData GetWeightedRandomModule()
         {
-            int randomWeight = Random.Range(0, _totalWeight + 1);
-            foreach (ModuleData possibleModule in _possibleModules)
+            int randomWeight = Random.Range(0, CellData.TotalWeight + 1);
+            foreach (ModuleData possibleModule in CellData.PossibleModules)
             {
                 randomWeight -= possibleModule.Frequency;
                 if (randomWeight <= 0)
@@ -62,14 +52,14 @@ namespace WFCourse.Generation
                     return possibleModule;
                 }
             }
-
-            return _possibleModules[0];
+            
+            return CellData.PossibleModules[0];
         }
 
         public void Propagate(Direction direction, int collapsedModuleDataNumber)
         {
             Queue<ModuleData> impossibleModules = new Queue<ModuleData>();
-            foreach (ModuleData possibleModule in _possibleModules)
+            foreach (ModuleData possibleModule in CellData.PossibleModules)
             {
                 if (!possibleModule.PersistentPossibleNeighbors.PossibleNeighbors[Directions.FlipDirection(direction)].Contains(collapsedModuleDataNumber))
                 {
@@ -82,10 +72,9 @@ namespace WFCourse.Generation
                 RemoveImpossibleModule(impossibleModule);
             }
 
-            if (_possibleModules.Count == 0)
+            if (CellData.PossibleModules.Count == 0)
             {
                 IsErroneus = true;
-                InstantiateModule(_errorModule, Rotation.Rot0);
             }
             
             CellPropagatedEvent?.Invoke(this);
@@ -93,20 +82,26 @@ namespace WFCourse.Generation
 
         private void RemoveImpossibleModule(ModuleData impossibleModule)
         {
-            _possibleModules.Remove(impossibleModule);
-            _totalWeight -= impossibleModule.Frequency;
-            _sumOfLogWeight -= Mathf.Log(impossibleModule.Frequency);
+            CellData.PossibleModules.Remove(impossibleModule);
+            CellData.TotalWeight -= impossibleModule.Frequency;
+            CellData.SumOfLogWeight -= Mathf.Log(impossibleModule.Frequency);
         }
 
         public float GetEntropy()
         {
-            return Mathf.Log(_totalWeight) - _sumOfLogWeight / _totalWeight + _entropyNoise;
+            float entropy = Mathf.Log(CellData.TotalWeight) - CellData.SumOfLogWeight / CellData.TotalWeight + _entropyNoise;
+            if (float.IsNaN(entropy))
+            {
+                return 0;
+            }
+
+            return entropy;
         }
 
         public void SetWeightData(int totalWeight, float logWeight, float noise)
         {
-            _totalWeight = totalWeight;
-            _sumOfLogWeight = logWeight;
+            CellData.TotalWeight = totalWeight;
+            CellData.SumOfLogWeight = logWeight;
             _entropyNoise = noise;
         }
     }

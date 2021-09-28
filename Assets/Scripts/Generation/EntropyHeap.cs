@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using WFCourse.Generation.Cells;
 
 namespace WFCourse.Generation
 {
     public class EntropyHeap
     {
         private SortedList<float, CellController> _sortedCells = new SortedList<float, CellController>();
+        private SortedList<float, CellController> SortedCells => _sortedCells;
         public EntropyHeap(ICollection<CellController> cells)
         {
             foreach (CellController cell in cells)
@@ -16,10 +18,18 @@ namespace WFCourse.Generation
             AddLowestEntropyCell(cells);
         }
 
+        public EntropyHeap(EntropyHeap entropyHeap)
+        {
+            _sortedCells = new SortedList<float, CellController>(entropyHeap.SortedCells);
+        }
+
         private void AddCell(CellController cell)
         {
             if (_sortedCells.ContainsValue(cell)) return;
-            
+            if (cell == null)
+            {
+                return;
+            }
             float entropy = cell.GetEntropy();
             if (_sortedCells.ContainsKey(entropy)) return;
             
