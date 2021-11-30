@@ -35,7 +35,6 @@ namespace WFCourse.Generation
                     _entropyHeap.AddLowestEntropyCell(_uncollapsedCells);
                     randomCell = _entropyHeap.GetCell();
                 }
-                Collapse(randomCell);
                 Propagate(randomCell);
             }
         }
@@ -51,42 +50,50 @@ namespace WFCourse.Generation
             _uncollapsedCells.Remove(randomCell);
         }
 
-        private void Propagate(CellController cell)
+        private void Propagate(CellController collapsedCell)
         {
-            foreach (KeyValuePair<Direction, Vector3Int> directionVector in Utilities.Directions.DirectionsByVectors)
+            Queue<CellController> cellsToUpdate = new Queue<CellController>();
+            cellsToUpdate.Enqueue(collapsedCell);
+
+            while (cellsToUpdate.Count != 0)
             {
-                Vector3Int offset = cell.Position + directionVector.Value;
-                if (!_wave.Cells.ContainsKey(offset))
-                {
-                    continue;
-                }
+                CellController cell = cellsToUpdate.Dequeue();
+                Collapse(cell);
 
-                CellController propagatedCell = _wave.Cells[offset];
-                if (propagatedCell.IsErroneus || propagatedCell.IsCollapsed)
+                foreach (KeyValuePair<Direction, Vector3Int> directionVector in Utilities.Directions.DirectionsByVectors)
                 {
-                    continue;
-                }
+                    Vector3Int offset = cell.Position + directionVector.Value;
+                    if (!_wave.Cells.ContainsKey(offset))
+                    {
+                        continue;
+                    }
 
-                if (!cell.IsCollapsed)
-                {
-                    return;
-                }
+                    CellController propagatedCell = _wave.Cells[offset];
+                    if (propagatedCell.IsErroneus || propagatedCell.IsCollapsed)
+                    {
+                        continue;
+                    }
+
+                    if (!cell.IsCollapsed)
+                    {
+                        return;
+                    }
                 
-                propagatedCell.Propagate(directionVector.Key, cell.CellData.CollapsedModuleData.Number);
+                    propagatedCell.Propagate(directionVector.Key, cell.CellData.CollapsedModuleData.Number);
 
-                if (propagatedCell.OnlyOnePossibility)
-                {
-                    Collapse(propagatedCell);
-                    Propagate(propagatedCell);
-                }
+                    if (propagatedCell.OnlyOnePossibility)
+                    {
+                        cellsToUpdate.Enqueue(propagatedCell);
+                    }
 
-                if (propagatedCell.IsErroneus)
-                {
-                    _backtrackingHandler.DiscardCurrentState();
-                    return;
+                    if (propagatedCell.IsErroneus)
+                    {
+                        _backtrackingHandler.DiscardCurrentState();
+                        return;
+                    }
                 }
             }
-
+            
             _backtrackingHandler.AddState(_wave, _uncollapsedCells, _entropyHeap);
         }
 
