@@ -1,5 +1,5 @@
 # WFCourse
-This repository is part of a Udemy course still in post-production process.
+This repository is part of a Udemy course, currently only in my native language (catalan) https://www.udemy.com/course/unity_wave_function_collapse/
 As you can see it is separated into multiple Tags that follow the course steps.
 
 The original wave function collapse algorithm was made by Maxim Gumin, here: https://github.com/mxgmn/WaveFunctionCollapse
