@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 using WFCourse.Generation.Cells;
 using WFCourse.Generation.Constraints;
 using WFCourse.Generation.Waves;
+using WFCourse.Modules;
 using WFCourse.ScriptableObjects;
 using Random = UnityEngine.Random;
 
@@ -25,6 +26,7 @@ namespace WFCourse.Generation
         private WaveFunctionCollapse _waveFunctionCollapse;
         private FrequencyController _frequencyController;
         private List<ConstraintApplier> _constraints;
+        private ModuleData[] _modulesDatas;
 
         private void Awake()
         {
@@ -89,16 +91,27 @@ namespace WFCourse.Generation
         {
             _constraints = new List<ConstraintApplier>()
             {
-                new PerimeterConstraint(_modulesDataSo.PerimeterConstraintNumber, _gridDimensions)
+                new PerimeterConstraint(_modulesDataSo.PerimeterConstraintNumbers, _gridDimensions)
             };
 
-            _frequencyController = new FrequencyController(_wave.Cells.Values);
+            _frequencyController = new FrequencyController();
+            _frequencyController.SetSpecificElementRandomFrequency(_modulesDatas, _modulesDataSo.AirIndex);
+            _frequencyController.SetOneRandomElementHighFrequency(_modulesDatas);
+            _frequencyController.CalculateInitialWeight(_wave.Cells.Values);
+            
             _waveFunctionCollapse = new WaveFunctionCollapse(_wave);
         }
 
         private void CreateCells()
         {
             _wave = new Wave();
+            _modulesDatas = new ModuleData[_modulesDataSo.ModuleDatas.Length];
+            for(int i = 0; i< _modulesDataSo.ModuleDatas.Length; i++)
+            {
+                _modulesDatas[i] = new ModuleData(_modulesDataSo.ModuleDatas[i]);
+            }
+
+            //_modulesDatas = _modulesDataSo.ModuleDatas;
 
             for (int x = 0; x < _gridDimensions.x; x++)
             {
@@ -115,7 +128,7 @@ namespace WFCourse.Generation
         private void CreateCell(Vector3Int position)
         {
             CellController cellController =
-                new CellController(_generationParent, _modulesDataSo.ModuleDatas, position, _moduleSize);
+                new CellController(_generationParent, _modulesDatas, position, _moduleSize);
             _wave.Cells[position] = cellController;
         }
 

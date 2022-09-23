@@ -35,6 +35,12 @@ namespace WFCourse.Generation
                     _entropyHeap.AddLowestEntropyCell(_uncollapsedCells);
                     randomCell = _entropyHeap.GetCell();
                 }
+
+                if (randomCell == null)
+                {
+                    _backtrackingHandler.DiscardCurrentState();
+                    continue;
+                }
                 Propagate(randomCell);
             }
         }

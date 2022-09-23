@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91dd1269-70ec-4677-a478-8fe1523487e2" name="Changes" comment="">
+    <list default="true" id="91dd1269-70ec-4677-a478-8fe1523487e2" name="Changes" comment="added seed control, module data key name info">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WFCourse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WFCourse/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LevelScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LevelScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ModuleDataBuilderScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ModuleDataBuilderScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UIScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UIScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/EntropyHeap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/EntropyHeap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/ModuleData/pipesModuleData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/ModuleData/pipesModuleData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/FrequencyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/FrequencyController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/WaveFunctionCollapse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/WaveFunctionCollapse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleConnectionChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleConnectionChecker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ModulesDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ModulesDataSO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,22 +22,34 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/3b/3bc19d14/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/3f/4bcc3ba1/EqualityComparer`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/9a/d91c074c/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/b9/ba261cec/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/c5/494a8b19/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6af207ecd21044628913f7cc589986ae6e00/a7/d04ccd40/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98effce1f3cf489fb7ce6830410f351c59800/c2/1f2fdd34/InspectorElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scenes/LevelScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scenes/ModuleDataBuilderScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scenes/UIScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Backtracking/BacktrackingHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/EntropyHeap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/EntropyHeap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/LevelGenerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/LevelGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/WaveFunctionCollapse.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/WaveFunctionCollapse.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Waves/Wave.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleConnectionChecker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleConnectionChecker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleDataBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleDataBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scenes/ScenesInitializer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -113,7 +120,7 @@
       <workItem from="1631697478485" duration="2229000" />
       <workItem from="1631701180652" duration="263000" />
       <workItem from="1631701874985" duration="9290000" />
-      <workItem from="1663921316406" duration="8460000" />
+      <workItem from="1663921316406" duration="13083000" />
     </task>
     <task id="LOCAL-00001" summary="visual scene improvements, added keyboard input for generation and rotator">
       <created>1663918844877</created>
@@ -129,7 +136,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663918923648</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="bugfix: part of cell data wasn't being transfered on past states">
+      <created>1663930283263</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663930283263</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added seed control, module data key name info">
+      <created>1663930351357</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663930351357</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -150,25 +171,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="visual scene improvements, added keyboard input for generation and rotator" />
     <MESSAGE value="constant rotator class" />
-    <option name="LAST_COMMIT_MESSAGE" value="constant rotator class" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Generation/Backtracking/BacktrackingHandler.cs</url>
-          <line>26</line>
-          <properties documentPath="F:\Unity Projects\WFCourse\Assets\Scripts\Generation\Backtracking\BacktrackingHandler.cs" initialLine="26" containingFunctionPresentation="method 'DiscardCurrentState'">
-            <startOffsets>
-              <option value="782" />
-            </startOffsets>
-            <endOffsets>
-              <option value="792" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="bugfix: part of cell data wasn't being transfered on past states" />
+    <MESSAGE value="added seed control, module data key name info" />
+    <option name="LAST_COMMIT_MESSAGE" value="added seed control, module data key name info" />
   </component>
 </project>

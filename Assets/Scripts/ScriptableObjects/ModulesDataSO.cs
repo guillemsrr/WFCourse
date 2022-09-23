@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WFCourse.Modules;
 
 namespace WFCourse.ScriptableObjects
@@ -8,7 +9,9 @@ namespace WFCourse.ScriptableObjects
     {
         public ModuleData[] ModuleDatas;
 
-        public int[] PerimeterConstraintNumber;
+        public int[] PerimeterConstraintNumbers;
+
+        public int AirIndex = 0;
 
         public void SetData(ModuleData[] moduleData)
         {
@@ -17,7 +20,7 @@ namespace WFCourse.ScriptableObjects
 
         public void SetPerimeterConstraints(List<int> perimeterModuleNumbers)
         {
-            PerimeterConstraintNumber = perimeterModuleNumbers.ToArray();
+            PerimeterConstraintNumbers = perimeterModuleNumbers.ToArray();
         }
     }
 }
