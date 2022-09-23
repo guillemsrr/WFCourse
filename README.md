@@ -1,14 +1,13 @@
-# WFCourse
-This repository is part of a Udemy course, currently only in my native language (catalan) https://www.udemy.com/course/unity_wave_function_collapse/
-As you can see it is separated into multiple Tags that follow the course steps.
+<p align="center"><img alt="final pipes" src="Images/pipes_max.gif"></p>
 
-The original wave function collapse algorithm was made by Maxim Gumin, here: https://github.com/mxgmn/WaveFunctionCollapse
+# WFCourse
+This repository is properly tagged in case you'd like to follow its development step by step.
 
 The first approach of the algorithm is a simple example of terrain adjacencies (sea, beach, valley, mountain) made of cubes.
 <p align="center"><img alt="terrain example" src="Images/terrain_example.png"></p>
 
 Having developed this simple example, we approach a more complex system featuring 3D modules, constraints and backtracking.
-<p align="center"><img alt="terrain example" src="Images/pipes_large.png"></p>
+<p align="center"><img alt="pipes example" src="Images/pipes_large.png"></p>
 
 And create a UI button in a different scene (following Scriptable Objects event channels pattern), and implement a simple orbital camera.
-<p align="center"><img alt="terrain example" src="Images/pipes_small.png"></p>
+<p align="center"><img alt="pipes with Generate button" src="Images/pipes_small.png"></p>
