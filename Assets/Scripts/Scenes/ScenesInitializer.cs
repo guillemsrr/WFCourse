@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,12 @@ namespace WFCourse
             SceneManager.LoadScene(LEVEL_SCENE_NAME, LoadSceneMode.Additive);
 
             SceneManager.UnloadSceneAsync(0);
+        }
+
+        private void Start()
+        {
+            Scene scene = SceneManager.GetSceneByName(UI_SCENE_NAME);
+            SceneManager.SetActiveScene(scene);
         }
     }
 }

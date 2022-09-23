@@ -14,6 +14,8 @@ namespace WFCourse.Generation
 {
     public class LevelGenerator : MonoBehaviour
     {
+        private const int MAX_OBSERVATION_TRIES = 10;
+        
         [SerializeField] private ModulesDataSO _modulesDataSo;
         [SerializeField] private Vector3Int _gridDimensions = new Vector3Int(5, 5, 1);
         [SerializeField] private LevelChannelSO _levelChannel;
@@ -21,12 +23,14 @@ namespace WFCourse.Generation
         [SerializeField] private float _moduleSize = 2f;
         [SerializeField] private int _seed = 0;
         [SerializeField] private bool _randomSeed = false;
+        [SerializeField] private bool _fullRandomGeneration = false;
 
         private Wave _wave;
         private WaveFunctionCollapse _waveFunctionCollapse;
         private FrequencyController _frequencyController;
         private List<ConstraintApplier> _constraints;
         private ModuleData[] _modulesDatas;
+        private int _observationTries;
 
         private void Awake()
         {
@@ -50,9 +54,24 @@ namespace WFCourse.Generation
             CreateCells();
             InitializeSubClasses();
             ApplyConstraints();
-            _waveFunctionCollapse.Observe();
+            Observe();
+            if (_observationTries == MAX_OBSERVATION_TRIES)
+            {
+                Generate();
+                return;
+            }
             DrawCells();
             CenterPivot();
+        }
+
+        private void Observe()
+        {
+            do
+            {
+                _waveFunctionCollapse.Observe();
+                _observationTries++;
+            }
+            while (AreAllCellsAir() && _observationTries < MAX_OBSERVATION_TRIES);
         }
 
         private void SetRandom()
@@ -95,8 +114,11 @@ namespace WFCourse.Generation
             };
 
             _frequencyController = new FrequencyController();
-            _frequencyController.SetSpecificElementRandomFrequency(_modulesDatas, _modulesDataSo.AirIndex);
-            _frequencyController.SetOneRandomElementHighFrequency(_modulesDatas);
+            if (_fullRandomGeneration)
+            {
+                _frequencyController.SetSpecificElementRandomFrequency(_modulesDatas, _modulesDataSo.AirIndex);
+                _frequencyController.SetOneRandomElementHighFrequency(_modulesDatas);
+            }
             _frequencyController.CalculateInitialWeight(_wave.Cells.Values);
             
             _waveFunctionCollapse = new WaveFunctionCollapse(_wave);
@@ -111,7 +133,10 @@ namespace WFCourse.Generation
                 _modulesDatas[i] = new ModuleData(_modulesDataSo.ModuleDatas[i]);
             }
 
-            //_modulesDatas = _modulesDataSo.ModuleDatas;
+            if (_fullRandomGeneration)
+            {
+                _gridDimensions = new Vector3Int(Random.Range(2, 8), Random.Range(2, 8), Random.Range(2, 8));
+            }
 
             for (int x = 0; x < _gridDimensions.x; x++)
             {
@@ -140,6 +165,7 @@ namespace WFCourse.Generation
             }
 
             _wave.Cells.Clear();
+            _observationTries = 0;
         }
 
         private void CenterPivot()
@@ -147,6 +173,19 @@ namespace WFCourse.Generation
             _generationParent.position =
                 -new Vector3(_gridDimensions.x / 2f, _gridDimensions.y / 2f, _gridDimensions.z / 2f) * _moduleSize;
             _generationParent.position += Vector3.one * _moduleSize / 2;
+        }
+
+        private bool AreAllCellsAir()
+        {
+            foreach (CellController cell in _wave.Cells.Values)
+            {
+                if (cell.CellData.CollapsedModuleData.Number != _modulesDataSo.AirIndex)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

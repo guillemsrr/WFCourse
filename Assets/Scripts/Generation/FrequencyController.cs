@@ -7,7 +7,7 @@ namespace WFCourse.Generation
 {
     public class FrequencyController
     {
-        private const int HIGH_FREQUENCY = 100;
+        private const int HIGH_FREQUENCY = 50;
         
         public void SetOneRandomElementHighFrequency(ModuleData[] moduleDatas)
         {
