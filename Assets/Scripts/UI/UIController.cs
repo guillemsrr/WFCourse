@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using WFCourse.ScriptableObjects;
@@ -17,6 +18,14 @@ namespace WFCourse.UI
         private void Generate()
         {
             _levelChannel.RaiseGenerationEvent();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Generate();
+            }
         }
     }
 }

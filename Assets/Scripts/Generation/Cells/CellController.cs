@@ -8,12 +8,13 @@ namespace WFCourse.Generation.Cells
     public class CellController
     {
         private Transform _parent;
-
         private float _entropyNoise;
+        private float _size;
 
         public delegate void CellPropagated(CellController cell);
+
         public event CellPropagated CellPropagatedEvent;
-        
+
         public Vector3Int Position { get; }
         public bool IsErroneus { get; private set; }
         public bool IsCollapsed => CellData.CollapsedModuleData != null;
@@ -22,10 +23,11 @@ namespace WFCourse.Generation.Cells
 
         public CellData CellData { get; set; }
 
-        public CellController(Transform parent, ModuleData[] moduleDatas, Vector3Int position)
+        public CellController(Transform parent, ModuleData[] moduleDatas, Vector3Int position, float size)
         {
             _parent = parent;
             Position = position;
+            _size = size;
 
             CellData = new CellData(moduleDatas);
         }
@@ -37,7 +39,13 @@ namespace WFCourse.Generation.Cells
 
         public void InstantiateModule()
         {
-            ModuleController collapsedModule = Object.Instantiate(CellData.CollapsedModuleData.ModuleController, Position*Vector3Int.one*2, Rotations.QuaternionByRotation[CellData.CollapsedModuleData.Rotation], _parent);
+            Vector3 position = new Vector3(Position.x, Position.y, Position.z);
+            position *= _size;
+            position += _parent.position;
+            
+            ModuleController collapsedModule = Object.Instantiate(CellData.CollapsedModuleData.ModuleController,
+                position,
+                Rotations.QuaternionByRotation[CellData.CollapsedModuleData.Rotation], _parent);
             collapsedModule.transform.name += Position;
         }
 
@@ -52,7 +60,7 @@ namespace WFCourse.Generation.Cells
                     return possibleModule;
                 }
             }
-            
+
             return CellData.PossibleModules[0];
         }
 
@@ -61,12 +69,13 @@ namespace WFCourse.Generation.Cells
             Queue<ModuleData> impossibleModules = new Queue<ModuleData>();
             foreach (ModuleData possibleModule in CellData.PossibleModules)
             {
-                if (!possibleModule.PersistentPossibleNeighbors.PossibleNeighbors[Directions.FlipDirection(direction)].Contains(collapsedModuleDataNumber))
+                if (!possibleModule.PersistentPossibleNeighbors.PossibleNeighbors[Directions.FlipDirection(direction)]
+                        .Contains(collapsedModuleDataNumber))
                 {
                     impossibleModules.Enqueue(possibleModule);
                 }
             }
-            
+
             foreach (ModuleData impossibleModule in impossibleModules)
             {
                 RemoveImpossibleModule(impossibleModule);
@@ -76,7 +85,7 @@ namespace WFCourse.Generation.Cells
             {
                 IsErroneus = true;
             }
-            
+
             CellPropagatedEvent?.Invoke(this);
         }
 
@@ -89,7 +98,8 @@ namespace WFCourse.Generation.Cells
 
         public float GetEntropy()
         {
-            float entropy = Mathf.Log(CellData.TotalWeight) - CellData.SumOfLogWeight / CellData.TotalWeight + _entropyNoise;
+            float entropy = Mathf.Log(CellData.TotalWeight) - CellData.SumOfLogWeight / CellData.TotalWeight +
+                            _entropyNoise;
             if (float.IsNaN(entropy))
             {
                 return 0;
