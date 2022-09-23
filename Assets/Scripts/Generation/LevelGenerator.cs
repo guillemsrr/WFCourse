@@ -7,6 +7,7 @@ using WFCourse.Generation.Cells;
 using WFCourse.Generation.Constraints;
 using WFCourse.Generation.Waves;
 using WFCourse.ScriptableObjects;
+using Random = UnityEngine.Random;
 
 namespace WFCourse.Generation
 {
@@ -17,6 +18,8 @@ namespace WFCourse.Generation
         [SerializeField] private LevelChannelSO _levelChannel;
         [SerializeField] private Transform _generationParent;
         [SerializeField] private float _moduleSize = 2f;
+        [SerializeField] private int _seed = 0;
+        [SerializeField] private bool _randomSeed = false;
 
         private Wave _wave;
         private WaveFunctionCollapse _waveFunctionCollapse;
@@ -41,6 +44,7 @@ namespace WFCourse.Generation
 
         private void GenerateLevel()
         {
+            SetRandom();
             CreateCells();
             InitializeSubClasses();
             ApplyConstraints();
@@ -49,11 +53,25 @@ namespace WFCourse.Generation
             CenterPivot();
         }
 
+        private void SetRandom()
+        {
+            if (_randomSeed)
+            {
+                _seed = Random.Range(0, int.MaxValue);
+            }
+            
+            Random.InitState(_seed);
+        }
+
         private void DrawCells()
         {
             foreach (CellController cell in _wave.Cells.Values)
             {
-                if (!cell.IsCollapsed) continue;
+                if (!cell.IsCollapsed)
+                {
+                    Debug.LogError("Trying to draw uncollapsed cell");
+                    continue;
+                }
 
                 cell.InstantiateModule();
             }

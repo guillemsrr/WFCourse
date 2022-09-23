@@ -65,7 +65,7 @@ namespace WFCourse.Generation
                 cell = _sortedCells.Values[0];
                 _sortedCells.RemoveAt(0);
             }
-            while (cell.IsCollapsed || cell.IsErroneus);
+            while (cell.IsCollapsed || cell.CellData.IsErroneus);
 
             return cell;
         }

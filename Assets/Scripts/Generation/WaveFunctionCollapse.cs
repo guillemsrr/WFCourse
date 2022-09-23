@@ -27,7 +27,7 @@ namespace WFCourse.Generation
 
         public void Observe()
         {
-            while (NumberCells != 0)    
+            while (NumberCells != 0)
             {
                 CellController randomCell = _entropyHeap.GetCell();
                 if (randomCell == null)
@@ -59,7 +59,7 @@ namespace WFCourse.Generation
             {
                 CellController cell = cellsToUpdate.Dequeue();
                 Collapse(cell);
-
+                
                 foreach (KeyValuePair<Direction, Vector3Int> directionVector in Utilities.Directions.DirectionsByVectors)
                 {
                     Vector3Int offset = cell.Position + directionVector.Value;
@@ -69,7 +69,7 @@ namespace WFCourse.Generation
                     }
 
                     CellController propagatedCell = _wave.Cells[offset];
-                    if (propagatedCell.IsErroneus || propagatedCell.IsCollapsed)
+                    if (/*propagatedCell.CellData.IsErroneus || */propagatedCell.IsCollapsed)
                     {
                         continue;
                     }
@@ -86,7 +86,7 @@ namespace WFCourse.Generation
                         cellsToUpdate.Enqueue(propagatedCell);
                     }
 
-                    if (propagatedCell.IsErroneus)
+                    if (propagatedCell.CellData.IsErroneus)
                     {
                         _backtrackingHandler.DiscardCurrentState();
                         return;

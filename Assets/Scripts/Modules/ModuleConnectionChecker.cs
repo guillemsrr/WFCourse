@@ -9,8 +9,7 @@ namespace WFCourse.Modules
             Direction neighborDirection = Directions.FlipDirection(direction);
             neighborDirection = Directions.RotateDirection(neighborDirection, possibleNeighbor.Rotation);
             direction = Directions.RotateDirection(direction, moduleData.Rotation);
-            
-            
+
             return moduleData.ModuleController.FacesByDirection[direction].TypeNumber == possibleNeighbor.ModuleController.FacesByDirection[neighborDirection].TypeNumber;
         }
     }

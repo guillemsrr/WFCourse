@@ -14,13 +14,13 @@ namespace WFCourse.Modules
 
         public ModuleData(ModuleController moduleController, Rotation rotation, int numberModuleData)
         {
-            Key = moduleController.name + "_" + rotation;
+            Key = numberModuleData + "_" +moduleController.name + "_" + rotation;
             Number = numberModuleData;
             Rotation = rotation;
             ModuleController = moduleController;
             PersistentPossibleNeighbors = new PersistentPossibleNeighbors();
         }
-
+        
         public void AddPossibleNeighbor(Direction direction, int possibleNeighbor)
         {
             PersistentPossibleNeighbors.PossibleNeighbors[direction].Add(possibleNeighbor);

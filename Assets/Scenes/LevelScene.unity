@@ -187,6 +187,8 @@ MonoBehaviour:
   _levelChannel: {fileID: 11400000, guid: 6f60fe59c7fa07248b2781439c54fbb6, type: 2}
   _generationParent: {fileID: 467891278}
   _moduleSize: 2
+  _seed: 0
+  _randomSeed: 1
 --- !u!4 &980042760
 Transform:
   m_ObjectHideFlags: 0

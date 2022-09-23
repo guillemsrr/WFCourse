@@ -10,8 +10,13 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/ModuleDataBuilderScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ModuleDataBuilderScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/UIScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UIScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/Cells/CellData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/EntropyHeap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/EntropyHeap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Generation/WaveFunctionCollapse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Generation/WaveFunctionCollapse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleConnectionChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleConnectionChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,21 +30,30 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/3f/4bcc3ba1/EqualityComparer`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/9a/d91c074c/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/b9/ba261cec/Array.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/c5/494a8b19/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6af207ecd21044628913f7cc589986ae6e00/a7/d04ccd40/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98effce1f3cf489fb7ce6830410f351c59800/c2/1f2fdd34/InspectorElement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scenes/LevelScene.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scenes/UIScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Backtracking/BacktrackingHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Cells/CellData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/EntropyHeap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/LevelGenerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Generation/LevelGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/WaveFunctionCollapse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Generation/Waves/Wave.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleConnectionChecker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Modules/ModuleDataBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Modules/ModuleDataBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scenes/ScenesInitializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://F:/Unity Projects/WFCourse/Assets/Scripts/Utilities/Directions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.10/Runtime/Core/CinemachineCore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/MaterialReferenceManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/inspectors/ClipInspector/ClipInspectorSelectionInfo.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1y7r28sw7EymeBfTBWqUljdpyCS" />
   <component name="ProjectLevelVcsManager">
@@ -51,13 +65,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true"
+  }
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="F:\Unity editors\2020.3.18f1\Editor\Unity.exe" />
@@ -101,7 +113,23 @@
       <workItem from="1631697478485" duration="2229000" />
       <workItem from="1631701180652" duration="263000" />
       <workItem from="1631701874985" duration="9290000" />
+      <workItem from="1663921316406" duration="8460000" />
     </task>
+    <task id="LOCAL-00001" summary="visual scene improvements, added keyboard input for generation and rotator">
+      <created>1663918844877</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663918844877</updated>
+    </task>
+    <task id="LOCAL-00002" summary="constant rotator class">
+      <created>1663918923648</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663918923648</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -120,5 +148,27 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="visual scene improvements, added keyboard input for generation and rotator" />
+    <MESSAGE value="constant rotator class" />
+    <option name="LAST_COMMIT_MESSAGE" value="constant rotator class" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Generation/Backtracking/BacktrackingHandler.cs</url>
+          <line>26</line>
+          <properties documentPath="F:\Unity Projects\WFCourse\Assets\Scripts\Generation\Backtracking\BacktrackingHandler.cs" initialLine="26" containingFunctionPresentation="method 'DiscardCurrentState'">
+            <startOffsets>
+              <option value="782" />
+            </startOffsets>
+            <endOffsets>
+              <option value="792" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
