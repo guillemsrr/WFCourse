@@ -8,6 +8,7 @@ namespace WFCourse.Generation.Cells
         private List<ModuleData> _possibleModules;
         public int TotalWeight { get; set; }
         public float SumOfLogWeight { get; set; }
+        public bool IsErroneus { get; set; }
 
         public CellData(ModuleData[] moduleDatas)
         {
@@ -19,6 +20,8 @@ namespace WFCourse.Generation.Cells
             _possibleModules = new List<ModuleData>(cellData.PossibleModules);
             TotalWeight = cellData.TotalWeight;
             SumOfLogWeight = cellData.SumOfLogWeight;
+            IsErroneus = cellData.IsErroneus;
+            CollapsedModuleData = cellData.CollapsedModuleData;
         }
 
         public ModuleData CollapsedModuleData { get; set; }

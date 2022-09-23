@@ -16,7 +16,6 @@ namespace WFCourse.Generation.Cells
         public event CellPropagated CellPropagatedEvent;
 
         public Vector3Int Position { get; }
-        public bool IsErroneus { get; private set; }
         public bool IsCollapsed => CellData.CollapsedModuleData != null;
         public bool OnlyOnePossibility => CellData.PossibleModules.Count == 1;
         public List<ModuleData> Possibilities => CellData.PossibleModules;
@@ -46,7 +45,7 @@ namespace WFCourse.Generation.Cells
             ModuleController collapsedModule = Object.Instantiate(CellData.CollapsedModuleData.ModuleController,
                 position,
                 Rotations.QuaternionByRotation[CellData.CollapsedModuleData.Rotation], _parent);
-            collapsedModule.transform.name += Position;
+            collapsedModule.transform.name += Position + " " + CellData.CollapsedModuleData.Number.ToString();
         }
 
         private ModuleData GetWeightedRandomModule()
@@ -83,7 +82,7 @@ namespace WFCourse.Generation.Cells
 
             if (CellData.PossibleModules.Count == 0)
             {
-                IsErroneus = true;
+                CellData.IsErroneus = true;
             }
 
             CellPropagatedEvent?.Invoke(this);
